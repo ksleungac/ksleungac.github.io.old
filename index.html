@@ -24,18 +24,149 @@
       </header>
       <section>
         <h1>My COMP4461 Timelines</h1>
-        <p>Created: 7-2-2022</p>
 
         <a name="project2"></a> 
         <h2>Group project 2 - Self Quarantine Chatbot</h2>
         <p>Created: 30-3-2022</p>
         
-        <h3>Where do we started?</h3>
+        <h3>Where did the idea came from?</h3>
+        <p>When I first about that, the project is about a quarantine robot, I don't know what is really about
+          maybe only some vague ideas, but not know exactly how the robot should do.
+        </p>
+        <p>So I decided to ask my friends about it. I have some friends study aboared. And when they come back to
+          Hong Kong, they will have to be quarantine for 14 days. They said the quarantine process is very boring. There's
+          not much they can do in the quarantine room. Moreover, they said because they can't do exercises in the room,
+          so they will get fatter later on.
+        </p>
+        <p>And, Luckily, one of our groupmate elizabeth is a exchange student, she also shared about her own experiences
+          in the quarantine, which mostly matched the feedback from above. 
+        </p>
 
+        <h3>Ideas are evolving</h3>
+        <p>We firstly created the mindmap about the robot functions in Google slides, which is a rather simple version
+          and later on we decided we would move them to mindmeister(same as lastime)
+        </p>
+        
+        <img src="images/p2mindmap.jpg" width="1000" height="300">
+        <p>To explain this in a simple way. I think the robot should have some entertainment features to keep
+          user happy during the whole quarantine process. It would suggest some musics, workout youtube videos.
+          Moreover, it should tell users some jokes to cheer the user up, and it would give some random images to
+          make the user's quarantine life more elements. At last, I wish to implement a mini-wordle. (But that didn't work).
+        </p>
+        <p>It should also have informational features. We are also targetting it as a personal assistant.
+          So it can return time information, weather information.
+        </p>
+        <p>At last, it is a quarantine robot. So it should have some functions related to covid19, right?
+          We think, it should provide latest covid informations, as well as 'what user should do' if the user is confirmed
+          positive, or felt unwell. At last, as in quarantine, it is eazy so lose the sense of dates, time. So There a 
+          quarantine progress, the user can inquire the quarantine progress.
+        </p>
 
+        <h3>Storyboarding - what might happened</h3>
+        <p>This is the least thing I want to declare as my work, but, fine, I drew this *masterpiece*</p>
+        <p>I want to express that, the user got into quarantine hotel, but he felt very bored, watched all
+           youtube videos, and when he feels unwell, no one could help him. But then he found the quarantine
+         chatbot, then suddenly his problem were solved. and his felt very good. Lastly at the end of the quarantine
+         He felt love with the robot, and he don't want to leave anymore.</p>
+        <img src="images/storyboard0.png" width="500" height="300">
+        <img src="images/storyboard2.jpg" width="500" height="300">
+        <img src="images/storyboard3.jpg" width="500" height="300">
+        <img src="images/Storyboard4.jpg" width="500" height="500">
 
+        <h3>Coding - The real part</h3>
+        <p>We have 3 people working on the code works. 
+          I was incharge of implementing some entertainment functions. Also, I try to make the robot as humanly as possible.</p>
+        <h4>Part 1 - Python Action.py - getting images/texts from online APIs</h4>
+        <p>For the robot to return more interesting content to us, it would have to run things in python, which is done
+          by implementing custom actions inside action.py. For example, In order to return images from the website,
+          it would have to GET images from the APIs. I have not work with an APIs in Python before(not in any languages...)
+          But with the help from teammates, I can pull the image and texts from the web. The format pulled are a python dictionary,
+          so I can do `something = data['attribute']` to pull the things I want. Here is a implementation of the program 
+          custom action to pull cat images from some random images API.
+          <img src="images/Python0.png" width="650" height="280">
+          <p>In this class, def name is for rasa to recognise this class, it return the custom action name. So the rasa knows
+            if the bot were to run 'action_cat_img', it would run this class. And def run function is the actual implementation
+            of the custom actions. I think the first function is like a identifier, the second one is like the actual body. 
+            The implementation is the same for returning dog images.
 
-
+            <p>Below is more complicated example. But it is similar, What I am trying to do is to pull travel images.
+            </p>
+            <img src="images/Python1.png" width="800" height="240">
+            <p>Similarly, Pulling text jokes</p>
+            <img src="images/Python2.png" width="500" height="240">
+            <p>-------------------------------------------------------</p>
+        <h4>Part 2 - Python Action.py - Dealing with time/ storing/ printing</h4>
+        <p>In this part, I try to make the bot greet to the time of the day, say good morning good afternoon and good evening. also
+          return a time , date in a organised, user friendly format ⬇️.
+        </p>
+        <img src="images/Python3.png" width="800" height="440">
+        <p>In here, I am trying to implement the start quarantine action. Because we need to keep track of the quarantine progress,
+          we need to store the date that the user start quarantine. Rasa comes with entity function to store text or number information.
+          But I thought doing this in python will be faster and more convenient. Which turns out to be true.
+          I store the current date and time the user start quarantine to the dictionary. Then it is stored to the json files locally. By doing so,
+          when rasa restarts, the dates would not lost ⬇️.
+        </p>
+        <img src="images/Python4.png" width="800" height="300">
+        <p>Then next, I implemented the can i leave function. Which is to tell the user then he can leave. In this function, I can then load back the json
+          files I just stored. In here, I decided to print out a progress bar. This is to show the quarantine progress. I think it's good to have a progress bar,
+          such that users knows their progress graphically, and maybe this progress bar act like a complishment, supporting them finish the quarantine ⬇️.
+        </p>
+        <img src="images/Python5.png" width="800" height="370">
+        <p>-----------------------------------------------</p>
+        <h4>Part 3 - Rasa parts - intents/ action/ rules</h4>
+        <P>In this part, I will work the modules within Rasa. I don't want to explain too deeply how it works. (This diary is getting way too long...)
+          In the nlu.yml files there's nothing special, I will mainly talk about the domain and stories files.
+        </P>
+        <p>Below is showing a part of the stories.yml . In this file, I defined serveral path on my functions. Such as, when a user ask for music, it
+          will ask the user which type of music the user want, then return corresponding musics to the user, match that type. 
+        </p>
+        <img src="images/Rasa0.png" width="820" height="700">
+        <p>⬇️Below is showing the domain.yml file. This is where I defined the actions, though default. In here, my goal is to make as much as reactions
+          possible. By putting multiple text responses under the same action, rasa would choose randomly which text responses to take. So in this case, the 
+          responses are more random, the robot talks like a human
+        </p>
+        <img src="images/Rasa1.png" width="820" height="600">
+        <p>-----------------------------------------------</p>
+        <h3>Coding&Thoughts - How do I make it respond like a human...</h3>
+        <p>This is a long story.... If you had pay attention to what I showed above, mainly the codes, you will find there's many 'decoration'
+          What I am trying to do in those case is to make the robot respond as humanly as possible.
+        </p>
+        <p>This is a good example. Both responses are a online responeses pulled from an API. In the previous testing, we found that,
+          sometimes network may lag. This is especially true when we host the robot on other server. In this case, I wish it to provide something first,
+          so the user won't have to wait for a blank screen. Moreover, let's say if the user want weather, I add the robot actions before my teammates 
+          work, so it will feel more of human-like. I also want to see things the prespective of the robot. So by using 'asking my friend at HKO' ,
+          it would make much of the sense, the rasa robot is asking the friends in HKO, which is happended to be a robot that boardcast APIs. So 
+          the information makes sense, also the users get to know where the weather information comes from. Same for the jokes, it would need something before
+          the actual jokes returned. Moreover, this is a robot, so why not programmer jokes?
+        </p>
+        <img src="images/Rasa2.png" width="820" height="150">
+        <P>The second example, is where I used a lot of emojis and emoticon (表情符號 or 顔文字 if you like).
+          I thought, well, human use emojis as well, so why don't my chatbot use it. Luckily rasa can direcly support print out of these complicated emojis.
+          And I thought it is better. From my prespective, this would assembly what my girl friend (if I have had one🥲) will say to me, with many emojis.
+        </P>
+        <img src="images/Rasa3.png" width="500" height="400">
+        <p>Remember I mentioned a progress bar and the Greet to the time of the day in the actions.py files?
+          By using the greet to the time of the day, the robot will say good/morning/evening/afternoon to you according to the time, 
+          make it like a human.</p>
+        <p>Below is the progress bar. I think it would be better than just showing only a day left, of percentage left. It is good to 
+          show this as a bar. Like a game loading bar. Also, I have added emojis and indications, to add oil to users.
+        </p>
+        <img src="images/Rasa4.png" width="500" height="100">
+        <p>-----------------------------------------------</p>
+        <h3>Unfinished mini-wordle game...</h3>
+        <p>I want to make a wordle games inside rasa. So users could play with rasa when boring. But due to my knowledge limitation, I can't.
+          I made the forms, the entity to store the user guessed words, I also made the 2 actions, one to randomly choose a word from the word list,
+          another one to validate uers word. Everything sounds fine, but I can't make past the nlu.yml.
+        </p>
+        <p>In RASA, users intents is triggered by matching words in the intent.nlu. The problem is, I can't make sure everytime users input a wordle guess,
+          the robot will know he is playing wordle, and repeatedly executing that intent. If the users answer something that is not in the wordlist,
+          The intent won't be triggerd... and validate function won't be called... then everything won't work</p>
+          <img src="images/Rasa5.png" width="500" height="300">
+        <h4>I am exhausted in typing and chur-ing. Can I end this now?</h4>
+        <h3>Ending - Gained - Reflection</h3>
+        </p>
+        </p>
+        
         <a name="project1"></a> 
         <h2>Group project 1 - Clever Washer on the campus</h2>
 
