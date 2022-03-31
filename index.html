@@ -120,7 +120,7 @@
         <p>Below is showing a part of the stories.yml . In this file, I defined serveral path on my functions. Such as, when a user ask for music, it
           will ask the user which type of music the user want, then return corresponding musics to the user, match that type. 
         </p>
-        <img src="images/Rasa0.png" width="820" height="700">
+        <img src="images/Rasa0.png" width="920" height="920">
         <p>⬇️Below is showing the domain.yml file. This is where I defined the actions, though default. In here, my goal is to make as much as reactions
           possible. By putting multiple text responses under the same action, rasa would choose randomly which text responses to take. So in this case, the 
           responses are more random, the robot talks like a human
@@ -139,7 +139,7 @@
           the information makes sense, also the users get to know where the weather information comes from. Same for the jokes, it would need something before
           the actual jokes returned. Moreover, this is a robot, so why not programmer jokes?
         </p>
-        <img src="images/Rasa2.png" width="820" height="150">
+        <img src="images/Rasa2.png" width="700" height="100">
         <P>The second example, is where I used a lot of emojis and emoticon (表情符號 or 顔文字 if you like).
           I thought, well, human use emojis as well, so why don't my chatbot use it. Luckily rasa can direcly support print out of these complicated emojis.
           And I thought it is better. From my prespective, this would assembly what my girl friend (if I have had one🥲) will say to me, with many emojis.
@@ -158,12 +158,37 @@
           I made the forms, the entity to store the user guessed words, I also made the 2 actions, one to randomly choose a word from the word list,
           another one to validate uers word. Everything sounds fine, but I can't make past the nlu.yml.
         </p>
-        <p>In RASA, users intents is triggered by matching words in the intent.nlu. The problem is, I can't make sure everytime users input a wordle guess,
+        <p>In RASA, users intents is triggered by matching words in the nlu.yml. The problem is, I can't make sure everytime users input a wordle guess,
           the robot will know he is playing wordle, and repeatedly executing that intent. If the users answer something that is not in the wordlist,
           The intent won't be triggerd... and validate function won't be called... then everything won't work</p>
           <img src="images/Rasa5.png" width="500" height="300">
         <h4>I am exhausted in typing and chur-ing. Can I end this now?</h4>
-        <h3>Ending - Gained - Reflection</h3>
+        <p>-----------------------------------------------</p>
+        <h3>Ending - Reflection</h3>
+        <p>At last, I am pretty confident and satisfied on the humanly reactions, speech tone of the final product.
+          I would take this experience next time if I have to design simiar project, that is, think robot as a human.
+          what a human would do, I would emulate, implement then in the robot. It is as imagining the robot is a real
+          man.
+        </p>
+        <p>But, I still think If I have more time, I should finalize, tweak more on the nlu intent part. The first problem is we discovered
+          some problems in the final testing of the prototype. That is, we found sometimes our intent is not properly captured.
+          I found that we three coder are too focused on the functions, responses part, but we kind of ignored the
+          intent part. So the robot talks like a human, but it didn't 'think' or 'interpret' things as a human, specifically,
+          not that well trained, our nlu model.
+        </p>
+        <p>The second problem is somehow linked to the first one. I said we didn't match users words perfectly with user intents.
+          Then now, the problem is we didn't design many 'intents' to express our own thinking. Let's say you saw a cute cat image,
+          a normal would respond it with 'Wow, that's cute!' . But I didn't think of this and design this intent, so sometimes
+          for daily talks (excepting requests) , the robot can't respond properly as we didn't implement many ways for users
+          to express his intent. But hey, Siri and Google assistant won't work as intented sometimes lah. So I am really satisfied
+          for this 'mini' project. And it is glad to see there's still room for improvement.
+        </p>
+        <p>At last also huge praise to Marcus, he implemented the interface with telegram and cloud server. So we did not need to
+          design our own interface and host our robot. And effectively, everyone in the class can try out our bots on telegram!
+        </p>
+        <h3>-------------------------------------------------------------------------------</h3>
+        <h3>--------------------------End of project 2 diary-----------------------------</h3>
+        <h3>-------------------------------------------------------------------------------</h3>
         </p>
         </p>
         
