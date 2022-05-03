@@ -19,12 +19,67 @@
         <p>Portofolio for COMP4461</p>
         <p><a href="#project1">Project 1 - Clever Washer on the campus</a></p>
         <p><a href="#project2">Project 2 - Self Quarantine Chatbot</a></p>
+        <p><a href="#project3">Project 3 - Social VR Cultural World</a></p>
 
         
       </header>
       <section>
         <h1>My COMP4461 Timelines</h1>
+        <a name="project3"></a> 
+        <h2>Group project 3 - Social VR Cultural World</h2>
+        <p>Created: 4-5-2022</p>
 
+        <h3>Ideation</h3>
+        <p>Upon reading the project instruction PDF, Me and our groupmates have a very vague idea on actually what we are
+          going to implement. Because the scope is very large for VR applications. After reading and watching some
+          user scenario like mozilla hub and VRChat. I get some idea on what the project prototype may look like.
+        </p>
+        <p>Our initial idea were really normal. Like some sports game, simple games inside it. Karaoke, watching films,
+          concerting together, some other things also includes window shopping in a VR world. However, these idea don't
+          have any charateristics inside it, it is also quite boring, that is, there not a theme.
+        </p>
+        <p>Moreover, if we want to make things more complicated, let's say making a hide and seek game, or Among us style
+          game inside our VR world. However, the functions provided by mozilla hub is really limited. I later found that 
+          mozilla hub isn't for game at all, people were saying it as a alternative to zoom, or zoom class.
+          While another VR software VRChat is more game orientated. But we all thought that way the project will be
+          too complicated, we are time limited and therefore don't have the time to continue on that
+        </p>
+        <p>Then someone mention that, how about we make a language learning theme. It as like people will be gathering 
+          inside the VR world, and they will chat with each other using different languages. It will be a perfect scenario
+          where language-learners can get themseleves into the atmosphere. Later we also decide to boarden the 
+          the scope a bit. Make it tourist/museum like theme. And because of this is a international theme, we just want 
+          to put international famous heritage around the world, and in the centre it will be a flat piazza for people
+          to gather and chat. It also acts as a centre point for us. It will be a outdoor theme, since I think these years
+          people can't go out to travel because of COVID, and making ourdoor theme will be better.
+        </p>
+        <h3>Start - Find base map</h3>
+        <p>then we decided to find base map and start building it in the spoke.
+          I had to say spoke interface are kind of user friendly. But later it will become a disater because of this.
+          As we don't want to stuck with old maps, so we need to find a new map, and it has to be beautiful.
+
+        </p>
+        <img src="images/p31.jpg" width="1000" height="300">
+        <img src="images/p32.jpg" width="1000" height="300">
+        <p>We found some really good map on Sketchfab. They are really good looking and nice. Some of them
+          are scanned or hand-built, but at the end they are really high definition. Some maps are not in .glb format
+          originally, so it can't be loaded into spoke directly. But download it first and then convert it into .glb in blender
+          solve the problem.
+        </p>
+        <p>But when we try to export maps into mozilla hubs to test its size and texture, spoke isn't happy about it.
+          Until now, I get to know that, spoke generates collision and walkable planes using two different techniques.
+          Normally the walking plane is generated using trimesh. Trimesh provides a high definition walking plane, And
+          user can walk up slope, uneven terrain. So every plane are made of triangles. However, although this method works fine
+          in small indoor map. For such a big complex outdoor terrain map, it is too complicated for spoke to generate such terrain.
+          and often it will throw out error such as 'error generating nav mesh'. And we always find it hard to upload onto
+          mozilla hub.<br>
+          <img src="images/p33.jpg" width="400" height="400"><br>
+          You can see the 'force trimesh' box in this picture. Normally spoke will be using trimesh and 2d plane
+        at the same time. Force trimesh is well, as stated.</p>
+
+          <p>The second method is called 2d plane. So it can only create planes that are different height. mostly 
+            slopes are ignored. So the user can't walk on terrain. And it is very confusing to have somewhere you can't walk.
+          It't like meeting a airwall in a game.
+          </p>
         <a name="project2"></a> 
         <h2>Group project 2 - Self Quarantine Chatbot</h2>
         <p>Created: 30-3-2022</p>
